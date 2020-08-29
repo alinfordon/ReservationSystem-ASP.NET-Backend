@@ -15,9 +15,96 @@ namespace WebApi.Migrations.SqlServerMigrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.0")
+                .HasAnnotation("ProductVersion", "3.1.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("WebApi.Entities.Available", b =>
+                {
+                    b.Property<int>("availableId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("availableName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(5)")
+                        .HasMaxLength(5);
+
+                    b.HasKey("availableId");
+
+                    b.ToTable("Availables");
+                });
+
+            modelBuilder.Entity("WebApi.Entities.Location", b =>
+                {
+                    b.Property<int>("locationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("locationName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(300)")
+                        .HasMaxLength(300);
+
+                    b.HasKey("locationId");
+
+                    b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("WebApi.Entities.Order", b =>
+                {
+                    b.Property<int>("orderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("available")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(5)")
+                        .HasMaxLength(5);
+
+                    b.Property<string>("dateOfReservation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(300)")
+                        .HasMaxLength(300);
+
+                    b.Property<string>("orderLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(300)")
+                        .HasMaxLength(300);
+
+                    b.Property<string>("orderProduct")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.HasKey("orderId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("WebApi.Entities.Product", b =>
+                {
+                    b.Property<int>("productId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("productName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.HasKey("productId");
+
+                    b.ToTable("Products");
+                });
 
             modelBuilder.Entity("WebApi.Entities.User", b =>
                 {
@@ -37,6 +124,9 @@ namespace WebApi.Migrations.SqlServerMigrations
 
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");

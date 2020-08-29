@@ -155,3 +155,4 @@ D:\React App\react-mvc-api\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysi
 D:\React App\react-mvc-api\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\React App\react-mvc-api\obj\Debug\netcoreapp3.1\WebApi.csproj.CoreCompileInputs.cache
 D:\React App\react-mvc-api\obj\Debug\netcoreapp3.1\WebApi.MvcApplicationPartsAssemblyInfo.cache
+D:\React App\react-mvc-api\obj\Debug\netcoreapp3.1\WebApi.csprojAssemblyReference.cache
