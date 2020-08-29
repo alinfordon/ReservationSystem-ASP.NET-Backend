@@ -12,60 +12,64 @@ using WebApi.Helpers;
 
 namespace WebApi.Controllers
 {
-    [Authorize]
+    [Authorize]    
     [ApiController]
-    [Route("[controller]")]    
-    public class AvailableController : ControllerBase
+    [Route("[controller]")]
+    public class ProductController : ControllerBase
     {
+
         private readonly AbstractDatabaseContext _context;
 
-        public AvailableController(AbstractDatabaseContext context)
+        public ProductController(AbstractDatabaseContext context)
         {
             _context = context;
         }
 
-        // GET: /Availables
+        // GET: Product
         [AllowAnonymous]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Available>>> GetAvailables()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            return await _context.Availables.ToListAsync();
+            return await _context.Products.ToListAsync();
         }
 
+        // GET Product/5
         [AllowAnonymous]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Available>> GetAvailable(int id)
+        public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var available = await _context.Availables.FindAsync(id);
+            var product = await _context.Products.FindAsync(id);
 
-            if (available == null)
+            if(product == null)
             {
                 return NotFound();
             }
 
-            return available;
+            return product;
         }
 
+        // POST Product
         [AllowAnonymous]
         [HttpPost]
-        public async Task<ActionResult<Available>> PostAvailable(Available available)
+        public async Task<ActionResult<Product>> PostProduct(Product product)
         {
-            _context.Availables.Add(available);
+            _context.Products.Add(product);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAvailable", new { id = available.availableId }, available);
+            return CreatedAtAction("GetProduct", new { id = product.productId }, product);
         }
 
+        // PUT Product/5
         [AllowAnonymous]
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAvailable(int id, Available available)
+        public async Task<IActionResult> PutProduct(int id, Product product)
         {
-            if (id != available.availableId)
+            if (id != product.productId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(available).State = EntityState.Modified;
+            _context.Entry(product).State = EntityState.Modified;
 
             try
             {
@@ -73,7 +77,7 @@ namespace WebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AvailableExists(id))
+                if (!ProductExists(id))
                 {
                     return NotFound();
                 }
@@ -86,26 +90,25 @@ namespace WebApi.Controllers
             return NoContent();
         }
 
-        // DELETE
-        [AllowAnonymous]
+        // DELETE Product/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Available>> DeleteAvailable(int id)
+        public async Task<ActionResult<Product>> DeleteProduct(int id)
         {
-            var available = await _context.Availables.FindAsync(id);
-            if (available == null)
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
             {
                 return NotFound();
             }
 
-            _context.Availables.Remove(available);
+            _context.Products.Remove(product);
             await _context.SaveChangesAsync();
 
-            return available;
+            return product;
         }
 
-        private bool AvailableExists(int id)
+        private bool ProductExists(int id)
         {
-            return _context.Availables.Any(e => e.availableId == id);
+            return _context.Products.Any(e => e.productId == id);
         }
     }
 }
