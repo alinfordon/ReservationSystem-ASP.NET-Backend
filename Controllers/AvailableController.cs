@@ -24,15 +24,14 @@ namespace WebApi.Controllers
             _context = context;
         }
 
-        // GET: /Availables
-        [AllowAnonymous]
+        // GET: /Availables        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Available>>> GetAvailables()
         {
             return await _context.Availables.ToListAsync();
         }
 
-        [AllowAnonymous]
+      
         [HttpGet("{id}")]
         public async Task<ActionResult<Available>> GetAvailable(int id)
         {
@@ -46,7 +45,7 @@ namespace WebApi.Controllers
             return available;
         }
 
-        [AllowAnonymous]
+        
         [HttpPost]
         public async Task<ActionResult<Available>> PostAvailable(Available available)
         {
@@ -56,7 +55,7 @@ namespace WebApi.Controllers
             return CreatedAtAction("GetAvailable", new { id = available.availableId }, available);
         }
 
-        [AllowAnonymous]
+        
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAvailable(int id, Available available)
         {
@@ -87,7 +86,7 @@ namespace WebApi.Controllers
         }
 
         // DELETE
-        [AllowAnonymous]
+       
         [HttpDelete("{id}")]
         public async Task<ActionResult<Available>> DeleteAvailable(int id)
         {

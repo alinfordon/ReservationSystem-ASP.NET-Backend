@@ -25,7 +25,7 @@ namespace WebApi.Controllers
         }
 
         // GET: Orders
-        [AllowAnonymous]
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
@@ -33,7 +33,7 @@ namespace WebApi.Controllers
         }
 
         // GET Orders/5
-        [AllowAnonymous]
+       
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
@@ -48,7 +48,7 @@ namespace WebApi.Controllers
         }
 
         // POST Orders
-        [AllowAnonymous]
+        
         [HttpPost]
         public async Task<ActionResult<Order>> PostOrder(Order order)
         {
@@ -59,7 +59,7 @@ namespace WebApi.Controllers
         }
 
         // PUT Order
-        [AllowAnonymous]
+       
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOrder(int id, Order order)
         {
@@ -90,7 +90,7 @@ namespace WebApi.Controllers
         }
 
         // DELETE Order
-        [AllowAnonymous]
+       
         [HttpDelete("{id}")]
         public async Task<ActionResult<Order>> DeleteOrder(int id)
         {

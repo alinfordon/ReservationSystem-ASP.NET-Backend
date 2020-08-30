@@ -25,16 +25,14 @@ namespace WebApi.Controllers
             _context = context;
         }
 
-        // GET: Product
-        [AllowAnonymous]
+        // GET: Product        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             return await _context.Products.ToListAsync();
         }
 
-        // GET Product/5
-        [AllowAnonymous]
+        // GET Product/5        
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
@@ -48,8 +46,7 @@ namespace WebApi.Controllers
             return product;
         }
 
-        // POST Product
-        [AllowAnonymous]
+        // POST Product        
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
@@ -59,8 +56,7 @@ namespace WebApi.Controllers
             return CreatedAtAction("GetProduct", new { id = product.productId }, product);
         }
 
-        // PUT Product/5
-        [AllowAnonymous]
+        // PUT Product/5       
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {

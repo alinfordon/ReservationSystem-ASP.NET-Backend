@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ using WebApi.Helpers;
 
 namespace WebApi.Controllers
 {
-    [Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("[controller]")]
     
@@ -22,16 +23,13 @@ namespace WebApi.Controllers
             _context = context;
         }
 
-        // GET: api/Locations
-        [AllowAnonymous]
+        // GET: api/Locations        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Location>>> GetLocations()
         {
             return await _context.Locations.ToListAsync();
         }
-
-
-        [AllowAnonymous]
+               
         [HttpGet("{id}")]
         public async Task<ActionResult<Location>> GetLocation(int id)
         {
@@ -47,8 +45,7 @@ namespace WebApi.Controllers
 
         // PUT: api/Locations/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [AllowAnonymous]
+        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.       
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLocation(int id, Location location)
         {
@@ -80,8 +77,7 @@ namespace WebApi.Controllers
 
         // POST: api/Locations
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [AllowAnonymous]
+        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.        
         [HttpPost]
         public async Task<ActionResult<Location>> PostLocation(Location location)
         {
@@ -91,8 +87,7 @@ namespace WebApi.Controllers
             return CreatedAtAction("GetLocation", new { id = location.locationId }, location);
         }
 
-        // DELETE: api/Locations/5
-        [AllowAnonymous]
+        // DELETE: api/Locations/5       
         [HttpDelete("{id}")]
         public async Task<ActionResult<Location>> DeleteLocation(int id)
         {
