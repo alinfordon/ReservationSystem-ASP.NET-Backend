@@ -43,9 +43,7 @@ namespace WebApi.Controllers
             return location;
         }
 
-        // PUT: api/Locations/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.       
+        // PUT: api/Locations/5         
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLocation(int id, Location location)
         {
@@ -75,9 +73,7 @@ namespace WebApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Locations
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.        
+        // POST: api/Locations              
         [HttpPost]
         public async Task<ActionResult<Location>> PostLocation(Location location)
         {

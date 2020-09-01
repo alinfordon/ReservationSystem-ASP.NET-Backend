@@ -1,4 +1,5 @@
 ﻿using AutoMapper.Configuration;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,5 +21,6 @@ namespace WebApi.Helpers
         public DbSet<Available> Availables { get; set; }
         public DbSet<Product> Products  { get; set; }
         public DbSet<Order> Orders { get; set; }
+        
     }
 }

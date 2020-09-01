@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -47,8 +46,23 @@ namespace WebApi.Controllers
             return order;
         }
 
+        [HttpGet("dateorder/{dateOfReservation}")]
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrdersByDate(string dateOfReservation)
+        {
+            var order = await _context.Orders
+               .FromSqlInterpolated($"EXECUTE dbo.spOrders_GetByDate {dateOfReservation}")
+               .ToListAsync();
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            return order;
+        }
+      
         // POST Orders
-        
+
         [HttpPost]
         public async Task<ActionResult<Order>> PostOrder(Order order)
         {
@@ -105,10 +119,10 @@ namespace WebApi.Controllers
 
             return order;
         }
-
+       
         private bool OrderExists(int id)
         {
             return _context.Orders.Any(e => e.orderId == id);
-        }
+        }       
     }
 }

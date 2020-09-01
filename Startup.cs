@@ -36,7 +36,7 @@ namespace WebApi
                 services.AddDbContext<SqlServerDataContext>(
                        options => options.UseSqlServer(_configuration.GetConnectionString("WebApiDatabase"))
                    );
-                services.AddTransient<AbstractDatabaseContext, SqlServerDataContext>();
+                services.AddTransient<AbstractDatabaseContext, SqlServerDataContext>();                
             }
 
             else
