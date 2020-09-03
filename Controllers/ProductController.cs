@@ -46,7 +46,8 @@ namespace WebApi.Controllers
             return product;
         }
 
-        // POST Product        
+        // POST Product 
+        [Authorize(Roles = Role.Admin)]
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
@@ -56,7 +57,8 @@ namespace WebApi.Controllers
             return CreatedAtAction("GetProduct", new { id = product.productId }, product);
         }
 
-        // PUT Product/5       
+        // PUT Product/5    
+        [Authorize(Roles = Role.Admin)]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, Product product)
         {
@@ -87,6 +89,7 @@ namespace WebApi.Controllers
         }
 
         // DELETE Product/5
+        [Authorize(Roles = Role.Admin)]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Product>> DeleteProduct(int id)
         {

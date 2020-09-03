@@ -45,7 +45,7 @@ namespace WebApi.Controllers
             return available;
         }
 
-        
+        [Authorize(Roles = Role.Admin)]
         [HttpPost]
         public async Task<ActionResult<Available>> PostAvailable(Available available)
         {
@@ -55,7 +55,7 @@ namespace WebApi.Controllers
             return CreatedAtAction("GetAvailable", new { id = available.availableId }, available);
         }
 
-        
+        [Authorize(Roles = Role.Admin)]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAvailable(int id, Available available)
         {
@@ -86,7 +86,7 @@ namespace WebApi.Controllers
         }
 
         // DELETE
-       
+        [Authorize(Roles = Role.Admin)]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Available>> DeleteAvailable(int id)
         {

@@ -60,7 +60,22 @@ namespace WebApi.Controllers
 
             return order;
         }
-      
+
+        [HttpGet("userorder/{name}")]
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrdersByUser(string name)
+        {
+            var order = await _context.Orders
+               .FromSqlInterpolated($"EXECUTE dbo.spOrders_GetByName {name}")
+               .ToListAsync();
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            return order;
+        }
+
         // POST Orders
 
         [HttpPost]

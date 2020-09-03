@@ -10,7 +10,7 @@ using WebApi.Helpers;
 
 namespace WebApi.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     
@@ -43,7 +43,8 @@ namespace WebApi.Controllers
             return location;
         }
 
-        // PUT: api/Locations/5         
+        // PUT: api/Locations/5 
+        [Authorize(Roles = Role.Admin)]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutLocation(int id, Location location)
         {
@@ -73,7 +74,8 @@ namespace WebApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Locations              
+        // POST: api/Locations
+        [Authorize(Roles = Role.Admin)]
         [HttpPost]
         public async Task<ActionResult<Location>> PostLocation(Location location)
         {
@@ -83,7 +85,8 @@ namespace WebApi.Controllers
             return CreatedAtAction("GetLocation", new { id = location.locationId }, location);
         }
 
-        // DELETE: api/Locations/5       
+        // DELETE: api/Locations/5  
+        [Authorize(Roles = Role.Admin)]
         [HttpDelete("{id}")]
         public async Task<ActionResult<Location>> DeleteLocation(int id)
         {
