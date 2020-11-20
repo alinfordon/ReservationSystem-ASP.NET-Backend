@@ -29,7 +29,8 @@ namespace WebApi.Controllers
         {
             return await _context.Locations.ToListAsync();
         }
-               
+
+        // GET: api/Locations/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Location>> GetLocation(int id)
         {
